@@ -213,7 +213,7 @@
       <id>hadoop-0.20</id>
       <activation>
         <property>
-          <name>!hadoop.version</name>
+          <name>!hadoop.profile</name>
         </property>
       </activation>
       <dependencies>
@@ -227,7 +227,8 @@
       <id>hadoop-0.23</id>
       <activation>
         <property>
-          <name>hadoop.version</name>
+          <name>hadoop.profile</name>
+          <value>23</value>
         </property>
       </activation>
       <dependencies>
@@ -242,6 +243,16 @@
         <dependency>
           <groupId>org.apache.hadoop</groupId>
           <artifactId>hadoop-mapreduce-client-core</artifactId>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>mr1</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.hadoop</groupId>
+          <artifactId>hadoop-core</artifactId>
+          <scope>test</scope>
         </dependency>
       </dependencies>
     </profile>

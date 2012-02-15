@@ -176,11 +176,13 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
+      <version>1.6.1</version>
     </dependency>
 
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-jcl</artifactId>
+      <version>1.6.1</version>
       <scope>test</scope>
     </dependency>
 
@@ -197,4 +199,16 @@
     </dependency>
 
   </dependencies>
+  <profiles>
+    <profile>
+      <id>mr1</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.hadoop</groupId>
+          <artifactId>hadoop-core</artifactId>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
 </project>

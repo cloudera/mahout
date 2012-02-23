@@ -25,6 +25,7 @@ import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.mahout.clustering.ClusteringTestUtils;
+import org.apache.mahout.common.HadoopUtil;
 import org.apache.mahout.common.MahoutTestCase;
 import org.apache.mahout.common.iterator.sequencefile.PathFilters;
 import org.apache.mahout.math.Matrix;
@@ -219,14 +220,14 @@ public final class TestDistributedRowMatrix extends MahoutTestCase {
 
     deleteContentsOfPath(conf, outputPath);
 
-    assertEquals(0, fs.listStatus(outputPath).length);
+    assertEquals(0, HadoopUtil.listStatus(fs, outputPath).length);
 
     Vector result1 = dm.times(v);
 
-    assertEquals(0, fs.listStatus(outputPath).length);
+    assertEquals(0, HadoopUtil.listStatus(fs, outputPath).length);
     
     deleteContentsOfPath(conf, outputPath);
-    assertEquals(0, fs.listStatus(outputPath).length);
+    assertEquals(0, HadoopUtil.listStatus(fs, outputPath).length);
     
     conf.setBoolean(DistributedRowMatrix.KEEP_TEMP_FILES, true);
     dm.setConf(conf);
@@ -256,14 +257,14 @@ public final class TestDistributedRowMatrix extends MahoutTestCase {
 
     deleteContentsOfPath(conf, outputPath);
 
-    assertEquals(0, fs.listStatus(outputPath).length);
+    assertEquals(0, HadoopUtil.listStatus(fs, outputPath).length);
 
     Vector result1 = dm.timesSquared(v);
 
-    assertEquals(0, fs.listStatus(outputPath).length);
+    assertEquals(0, HadoopUtil.listStatus(fs, outputPath).length);
     
     deleteContentsOfPath(conf, outputPath);
-    assertEquals(0, fs.listStatus(outputPath).length);
+    assertEquals(0, HadoopUtil.listStatus(fs, outputPath).length);
     
     conf.setBoolean(DistributedRowMatrix.KEEP_TEMP_FILES, true);
     dm.setConf(conf);
@@ -290,7 +291,7 @@ public final class TestDistributedRowMatrix extends MahoutTestCase {
   private static void deleteContentsOfPath(Configuration conf, Path path) throws Exception {
     FileSystem fs = path.getFileSystem(conf);
     
-    FileStatus[] statuses = fs.listStatus(path);
+    FileStatus[] statuses = HadoopUtil.listStatus(fs, path);
     for (FileStatus status : statuses) {
       fs.delete(status.getPath(), true);
     }    

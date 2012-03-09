@@ -185,5 +185,15 @@
         <mahout.skip.example>true</mahout.skip.example>
       </properties>
     </profile>
+    <profile>
+      <id>mr1</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.hadoop</groupId>
+          <artifactId>hadoop-core</artifactId>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
   </profiles>
 </project>

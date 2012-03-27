@@ -17,11 +17,13 @@
 
 package org.apache.mahout.clustering.syntheticcontrol.dirichlet;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.apache.commons.cli2.builder.ArgumentBuilder;
 import org.apache.commons.cli2.builder.DefaultOptionBuilder;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.util.ToolRunner;
 import org.apache.mahout.clustering.conversion.InputDriver;
@@ -113,6 +115,21 @@ public final class Job extends AbstractJob {
   }
 
   /**
+   * Return the path to the final iteration's clusters
+   */
+  private static Path finalClusterPath(Configuration conf, Path output,
+      int maxIterations) throws IOException {
+    FileSystem fs = FileSystem.get(conf);
+    for (int i = maxIterations; i >= 0; i--) {
+      Path clusters = new Path(output, "clusters-" + i + "-final");
+      if (fs.exists(clusters)) {
+        return clusters;
+      }
+    }
+    return null;
+  }
+
+  /**
    * Run the job using supplied arguments, deleting the output directory if it exists beforehand
    * 
    * @param input
@@ -149,8 +166,9 @@ public final class Job extends AbstractJob {
                         threshold,
                         false);
     // run ClusterDumper
-    ClusterDumper clusterDumper =
-        new ClusterDumper(new Path(output, "clusters-" + maxIterations), new Path(output, "clusteredPoints"));
+    ClusterDumper clusterDumper = new ClusterDumper(finalClusterPath(
+      new Configuration(), output, maxIterations),
+      new Path(output, "clusteredPoints"));
     clusterDumper.printClusters(null);
   }
 

@@ -120,7 +120,7 @@ public final class Job extends AbstractJob {
       int maxIterations) throws IOException {
     FileSystem fs = FileSystem.get(conf);
     for (int i = maxIterations; i >= 0; i--) {
-      Path clusters = new Path(output, "clusters-" + i);
+      Path clusters = new Path(output, "clusters-" + i + "-final");
       if (fs.exists(clusters)) {
         return clusters;
       }
@@ -174,7 +174,8 @@ public final class Job extends AbstractJob {
         output, measure, t1, t2, false, false);
     log.info("Running FuzzyKMeans");
     FuzzyKMeansDriver.run(directoryContainingConvertedInput, new Path(output,
-        Cluster.INITIAL_CLUSTERS_DIR), output, measure, convergenceDelta,
+        Cluster.INITIAL_CLUSTERS_DIR + Cluster.FINAL_ITERATION_SUFFIX),
+        output, measure, convergenceDelta,
         maxIterations, fuzziness, true, true, 0.0, false);
     // run ClusterDumper
     ClusterDumper clusterDumper = new ClusterDumper(finalClusterPath(conf,

@@ -208,7 +208,7 @@ public final class Job extends AbstractJob {
       int maxIterations) throws IOException {
     FileSystem fs = FileSystem.get(conf);
     for (int i = maxIterations; i >= 0; i--) {
-      Path clusters = new Path(output, "clusters-" + i);
+      Path clusters = new Path(output, "clusters-" + i + "-final");
       if (fs.exists(clusters)) {
         return clusters;
       }

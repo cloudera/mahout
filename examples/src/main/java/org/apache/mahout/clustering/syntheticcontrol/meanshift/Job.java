@@ -17,9 +17,11 @@
 
 package org.apache.mahout.clustering.syntheticcontrol.meanshift;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.util.ToolRunner;
 import org.apache.mahout.clustering.conversion.meanshift.InputDriver;
@@ -96,6 +98,21 @@ public final class Job extends AbstractJob {
   }
 
   /**
+   * Return the path to the final iteration's clusters
+   */
+  private static Path finalClusterPath(Configuration conf, Path output,
+      int maxIterations) throws IOException {
+    FileSystem fs = FileSystem.get(conf);
+    for (int i = maxIterations; i >= 0; i--) {
+      Path clusters = new Path(output, "clusters-" + i + "-final");
+      if (fs.exists(clusters)) {
+        return clusters;
+      }
+    }
+    return null;
+  }
+
+  /**
    * Run the meanshift clustering job on an input dataset using the given
    * distance measure, t1, t2 and iteration parameters. All output data will be
    * written to the output directory, which will be initially deleted if it
@@ -140,8 +157,9 @@ public final class Job extends AbstractJob {
         measure, kernelProfile, t1, t2, convergenceDelta, maxIterations, true,
         true, false);
     // run ClusterDumper
-    ClusterDumper clusterDumper = new ClusterDumper(new Path(output,
-        "clusters-" + maxIterations), new Path(output, "clusteredPoints"));
+    ClusterDumper clusterDumper = new ClusterDumper(finalClusterPath(
+        conf, output, maxIterations),
+        new Path(output, "clusteredPoints"));
     clusterDumper.printClusters(null);
   }
   

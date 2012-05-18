@@ -156,6 +156,10 @@ public final class LDADriver extends AbstractJob {
     Path output = getOutputPath();
     if (hasOption(DefaultOptionCreator.OVERWRITE_OPTION)) {
       HadoopUtil.delete(getConf(), output);
+      FileSystem fs = output.getFileSystem(getConf());
+      if (!fs.exists(output)) {
+        fs.mkdirs(output);
+      }
     }
     int maxIterations = Integer.parseInt(getOption(DefaultOptionCreator.MAX_ITERATIONS_OPTION));
     int numTopics = Integer.parseInt(getOption(NUM_TOPICS_OPTION));

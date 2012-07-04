@@ -5,8 +5,10 @@
   <formats>
     <format>dir</format>
     <format>tar.gz</format>
+    <!-- Excluding other assembly formats for CDH.
     <format>tar.bz2</format>
     <format>zip</format>
+    -->
   </formats>
 
   <fileSets>

@@ -20,7 +20,7 @@
       <scope>runtime</scope>
       <outputDirectory>/</outputDirectory>
       <excludes>
-        <exclude>org.apache.hadoop:hadoop-core</exclude>
+        <exclude>org.apache.hadoop:*</exclude>
       </excludes>
     </dependencySet>
   </dependencySets>

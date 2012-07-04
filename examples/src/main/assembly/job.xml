@@ -21,7 +21,7 @@
       <outputDirectory>/</outputDirectory>
       <useTransitiveFiltering>true</useTransitiveFiltering>
       <excludes>
-        <exclude>org.apache.hadoop:hadoop-core</exclude>
+        <exclude>org.apache.hadoop:*</exclude>
         <!-- This jar contains a LICENSE file in the combined package. Another JAR includes
           a licenses/ directory. That's OK except when unpacked on case-insensitive file
           systems like Mac HFS+. Since this isn't really needed, we just remove it. -->

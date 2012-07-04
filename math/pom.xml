@@ -23,7 +23,7 @@
   <parent>
     <groupId>org.apache.mahout</groupId>
     <artifactId>mahout</artifactId>
-    <version>0.9</version>
+    <version>0.9-cdh5.1.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
@@ -40,6 +40,16 @@
     <defaultGoal>install</defaultGoal>
 
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <encoding>${project.build.sourceEncoding}</encoding>
+          <source>${sourceJavaVersion}</source>
+          <target>${targetJavaVersion}</target>
+        </configuration>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.mahout</groupId>
         <artifactId>mahout-collection-codegen-plugin</artifactId>

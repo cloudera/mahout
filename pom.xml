@@ -20,12 +20,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.apache.mahout</groupId>
   <artifactId>mahout</artifactId>
-  <version>0.9</version>
+  <version>0.9-cdh5.1.0-SNAPSHOT</version>
 
   <parent>
-    <groupId>org.apache</groupId>
-    <artifactId>apache</artifactId>
-    <version>9</version>
+    <groupId>com.cloudera.cdh</groupId>
+    <artifactId>cdh-root</artifactId>
+    <version>5.1.0-SNAPSHOT</version>
   </parent>
 
   <packaging>pom</packaging>
@@ -95,8 +95,9 @@
   </mailingLists>
   <properties>
     <skipTests>false</skipTests>
-    <maven.compiler.source>1.6</maven.compiler.source>
-    <maven.compiler.target>1.6</maven.compiler.target>
+    <javacVersion>1.7</javacVersion>
+    <sourceJavaVersion>1.6</sourceJavaVersion>
+    <targetJavaVersion>1.6</targetJavaVersion>
     <maven.clover.multiproject>true</maven.clover.multiproject>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <msurefire.version>2.16</msurefire.version>
@@ -104,8 +105,8 @@
     <mcheckstyle.version>2.10</mcheckstyle.version>
     <mfindbugs.version>2.5.2</mfindbugs.version>
     <mjavadoc.version>2.9.1</mjavadoc.version>
-    <hadoop.version>1.2.1</hadoop.version>
-    <lucene.version>4.6.1</lucene.version>
+    <hadoop.version>${cdh.hadoop.version}</hadoop.version>
+    <lucene.version>${cdh.solr.version}</lucene.version>
     <slf4j.version>1.7.5</slf4j.version>
   </properties>
   <issueManagement>
@@ -118,6 +119,27 @@
       <id>apache.snapshots</id>
       <name>Apache Snapshot Repository</name>
       <url>http://repository.apache.org/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </repository>
+
+    <repository>
+      <id>cdh.repo</id>
+      <url>https://repository.cloudera.com/artifactory/cloudera-repos</url>
+      <name>Cloudera Repositories</name>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    
+    <repository>
+      <id>cdh.snapshots.repo</id>
+      <url>https://repository.cloudera.com/artifactory/libs-snapshot-local</url>
+      <name>Cloudera Snapshots Repository</name>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
       <releases>
         <enabled>false</enabled>
       </releases>
@@ -230,7 +252,7 @@
       <dependency>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-core</artifactId>
-        <version>${hadoop.version}</version>
+        <version>${cdh.mr1.version}</version>
         <exclusions>
           <exclusion>
             <groupId>net.sf.kosmosfs</groupId>
@@ -287,6 +309,18 @@
           <exclusion>
             <groupId>org.eclipse.jdt</groupId>
             <artifactId>core</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jcl</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -351,17 +385,61 @@
             <groupId>org.eclipse.jdt</groupId>
             <artifactId>core</artifactId>
           </exclusion>
+          <exclusion>
+            <groupId>jdk.tools</groupId>
+            <artifactId>jdk.tools</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jcl</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+          </exclusion>
         </exclusions>
       </dependency>
       <dependency>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-mapreduce-client-core</artifactId>
         <version>${hadoop.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jcl</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-mapreduce-client-common</artifactId>
         <version>${hadoop.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jcl</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
 
       <dependency>
@@ -619,8 +697,8 @@
           <configuration>
             <!-- encoding, source and target are explicitly defined until MNGECLIPSE-966 is fixed -->
             <encoding>${project.build.sourceEncoding}</encoding>
-            <source>${maven.compiler.source}</source>
-            <target>${maven.compiler.target}</target>
+            <source>${sourceJavaVersion}</source>
+            <target>${targetJavaVersion}</target>
             <optimize>true</optimize>
           </configuration>
         </plugin>
@@ -658,6 +736,11 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>1.8</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>1.0</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -751,6 +834,44 @@
           <excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>
           <failOnError>false</failOnError>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <inherited>false</inherited>
+        <configuration>
+          <rules>
+            <requireMavenVersion>
+              <version>[3.0.0,)</version>
+            </requireMavenVersion>
+            <requireJavaVersion>
+              <version>[${javacVersion}.0,${javacVersion}.1000}]</version>
+            </requireJavaVersion>
+          </rules>
+        </configuration>
+        <executions>
+          <execution>
+            <id>clean</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <phase>pre-clean</phase>
+          </execution>
+          <execution>
+            <id>default</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <phase>validate</phase>
+          </execution>
+          <execution>
+            <id>site</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <phase>pre-site</phase>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.rat</groupId>
@@ -894,6 +1015,9 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <configuration>
+              <encoding>${project.build.sourceEncoding}</encoding>
+              <source>${sourceJavaVersion}</source>
+              <target>${targetJavaVersion}</target>
               <showDeprecation>true</showDeprecation>
               <showWarnings>true</showWarnings>
               <compilerArgument>${compile.flags}</compilerArgument>
@@ -1006,6 +1130,30 @@
                 </configuration>
               </execution>
             </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>mr1</id>
+      <properties>
+        <mr1.test>true</mr1.test>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <forkMode>once</forkMode>
+              <argLine>-Xms256m -Xmx768m</argLine>
+              <testFailureIgnore>false</testFailureIgnore>
+              <redirectTestOutputToFile>true</redirectTestOutputToFile>
+              <classpathDependencyExcludes>
+                <classpathDependencyExclude>org.apache.hadoop:hadoop-mapreduce*</classpathDependencyExclude>
+                <classpathDependencyExclude>org.apache.hadoop:hadoop-yarn*</classpathDependencyExclude>
+              </classpathDependencyExcludes>
+            </configuration>
           </plugin>
         </plugins>
       </build>

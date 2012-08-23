@@ -298,6 +298,10 @@
         <version>${hadoop.version}</version>
         <exclusions>
           <exclusion>
+            <groupId>jdiff</groupId>
+            <artifactId>jdiff</artifactId>
+          </exclusion>
+          <exclusion>
             <groupId>net.sf.kosmosfs</groupId>
             <artifactId>kfs</artifactId>
           </exclusion>

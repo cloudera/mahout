@@ -106,6 +106,7 @@
     <mjavadoc.version>2.9.1</mjavadoc.version>
     <hadoop.version>${cdh.hadoop.version}</hadoop.version>
     <lucene.version>4.3.0</lucene.version>
+    <javaVersion>1.6</javaVersion>
   </properties>
   <issueManagement>
     <system>Jira</system>
@@ -636,7 +637,7 @@
             <!-- encoding, source and target are explicitly defined until MNGECLIPSE-966 is fixed -->
             <encoding>${project.build.sourceEncoding}</encoding>
             <source>${maven.compiler.source}</source>
-            <target>${maven.compiler.target}</target>
+            <target>${javaVersion}</target>
             <optimize>true</optimize>
           </configuration>
         </plugin>
@@ -674,6 +675,11 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>1.8</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>1.0</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -771,6 +777,44 @@
           <excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>
           <failOnError>false</failOnError>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <inherited>false</inherited>
+        <configuration>
+          <rules>
+            <requireMavenVersion>
+              <version>[3.0.0,)</version>
+            </requireMavenVersion>
+            <requireJavaVersion>
+              <version>[${javaVersion}.0,${javaVersion}.1000}]</version>
+            </requireJavaVersion>
+          </rules>
+        </configuration>
+        <executions>
+          <execution>
+            <id>clean</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <phase>pre-clean</phase>
+          </execution>
+          <execution>
+            <id>default</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <phase>validate</phase>
+          </execution>
+          <execution>
+            <id>site</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <phase>pre-site</phase>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
     <resources>

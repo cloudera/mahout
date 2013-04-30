@@ -41,6 +41,16 @@
 
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <encoding>${project.build.sourceEncoding}</encoding>
+          <source>${sourceJavaVersion}</source>
+          <target>${targetJavaVersion}</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
         <groupId>org.apache.mahout</groupId>
         <artifactId>mahout-collection-codegen-plugin</artifactId>
         <executions>

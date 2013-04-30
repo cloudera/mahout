@@ -47,6 +47,17 @@
       </resource>
     </resources>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <encoding>${project.build.sourceEncoding}</encoding>
+          <source>${sourceJavaVersion}</source>
+          <target>${targetJavaVersion}</target>
+          <optimize>true</optimize>
+        </configuration>
+      </plugin>
+
       <!-- create test jar so other modules can reuse the core test utility classes. -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

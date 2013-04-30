@@ -95,8 +95,8 @@
   </mailingLists>
   <properties>
     <skipTests>false</skipTests>
-    <maven.compiler.source>1.6</maven.compiler.source>
-    <maven.compiler.target>1.6</maven.compiler.target>
+    <sourceJavaVersion>1.6</sourceJavaVersion>
+    <targetJavaVersion>1.6</targetJavaVersion>
     <maven.clover.multiproject>true</maven.clover.multiproject>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <msurefire.version>2.12</msurefire.version>
@@ -106,7 +106,6 @@
     <mjavadoc.version>2.9.1</mjavadoc.version>
     <hadoop.version>${cdh.hadoop.version}</hadoop.version>
     <lucene.version>4.3.0</lucene.version>
-    <javaVersion>1.6</javaVersion>
   </properties>
   <issueManagement>
     <system>Jira</system>
@@ -636,8 +635,8 @@
           <configuration>
             <!-- encoding, source and target are explicitly defined until MNGECLIPSE-966 is fixed -->
             <encoding>${project.build.sourceEncoding}</encoding>
-            <source>${maven.compiler.source}</source>
-            <target>${javaVersion}</target>
+            <source>${sourceJavaVersion}</source>
+            <target>${targetJavaVersion}</target>
             <optimize>true</optimize>
           </configuration>
         </plugin>
@@ -788,7 +787,7 @@
               <version>[3.0.0,)</version>
             </requireMavenVersion>
             <requireJavaVersion>
-              <version>[${javaVersion}.0,${javaVersion}.1000}]</version>
+              <version>[${targetJavaVersion}.0,${targetJavaVersion}.1000}]</version>
             </requireJavaVersion>
           </rules>
         </configuration>
@@ -918,6 +917,9 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <configuration>
+              <encoding>${project.build.sourceEncoding}</encoding>
+              <source>${sourceJavaVersion}</source>
+              <target>${targetJavaVersion}</target>
               <showDeprecation>true</showDeprecation>
               <showWarnings>true</showWarnings>
               <compilerArgument>${compile.flags}</compilerArgument>

@@ -95,6 +95,8 @@
   </mailingLists>
   <properties>
     <skipTests>false</skipTests>
+    <sourceJavaVersion>1.6</sourceJavaVersion>
+    <targetJavaVersion>1.6</targetJavaVersion>
     <maven.clover.multiproject>true</maven.clover.multiproject>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <hadoop.version>${cdh.hadoop.version}</hadoop.version>
@@ -615,7 +617,7 @@
           <version>2.3.2</version>
           <configuration>
             <encoding>UTF-8</encoding>
-            <source>1.6</source>
+            <source>${sourceJavaVersion}</source>
             <target>${javaVersion}</target>
             <optimize>true</optimize>
           </configuration>
@@ -882,6 +884,8 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <configuration>
+              <source>${sourceJavaVersion}</source>
+              <target>${targetJavaVersion}</target>
               <showDeprecation>true</showDeprecation>
               <showWarnings>true</showWarnings>
               <compilerArgument>${compile.flags}</compilerArgument>

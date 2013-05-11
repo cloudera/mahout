@@ -52,7 +52,7 @@ public class MatrixColumnMeansJob {
   public static Vector run(Configuration conf,
                            Path inputPath,
                            Path outputVectorTmpPath) throws IOException {
-    return run(conf, inputPath, outputVectorTmpPath);
+    return run(conf, inputPath, outputVectorTmpPath, null);
   }
 
   /**

@@ -106,7 +106,7 @@
     <mfindbugs.version>2.5.2</mfindbugs.version>
     <mjavadoc.version>2.9.1</mjavadoc.version>
     <hadoop.version>${cdh.hadoop.version}</hadoop.version>
-    <lucene.version>4.3.0</lucene.version>
+    <lucene.version>${cdh.solr.version}</lucene.version>
   </properties>
   <issueManagement>
     <system>Jira</system>

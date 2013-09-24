@@ -95,6 +95,7 @@
   </mailingLists>
   <properties>
     <skipTests>false</skipTests>
+    <javacVersion>1.7</javacVersion>
     <sourceJavaVersion>1.6</sourceJavaVersion>
     <targetJavaVersion>1.6</targetJavaVersion>
     <maven.clover.multiproject>true</maven.clover.multiproject>
@@ -803,7 +804,7 @@
               <version>[3.0.0,)</version>
             </requireMavenVersion>
             <requireJavaVersion>
-              <version>[${targetJavaVersion}.0,${targetJavaVersion}.1000}]</version>
+              <version>[${javacVersion}.0,${javacVersion}.1000}]</version>
             </requireJavaVersion>
           </rules>
         </configuration>

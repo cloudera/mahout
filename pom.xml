@@ -96,8 +96,8 @@
   <properties>
     <skipTests>false</skipTests>
     <javacVersion>1.7</javacVersion>
-    <sourceJavaVersion>1.6</sourceJavaVersion>
-    <targetJavaVersion>1.6</targetJavaVersion>
+    <sourceJavaVersion>1.7</sourceJavaVersion>
+    <targetJavaVersion>1.7</targetJavaVersion>
     <maven.clover.multiproject>true</maven.clover.multiproject>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <msurefire.version>2.16</msurefire.version>

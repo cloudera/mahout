@@ -1,13 +1,17 @@
 Mahout Change Log
 
-Release 1.0 - unreleased
+Release 0.11.1 - unreleased
+
+  MAHOUT-1771: Cluster dumper omits indices and 0 elements for dense vector or sparse containing 0s (srowen)
+
+Release 0.10.0 - 2015-04-11
 
   MAHOUT-1610: Update tests to pass in Java 8 (srowen)
 
   MAHOUT-1498: DistributedCache.setCacheFiles in DictionaryVectorizer overwrites jars pushed using oozie (Sergey via ssc)
 
   MAHOUT-1416: Make access of DecisionForest.read(dataInput) less restricted (Manoj Awasthi via smarthi)
-  
+
   MAHOUT-1415: Clone method on sparse matrices fails if there is an empty row which has not been set explicitly (till.rohrmann via ssc)
 
   MAHOUT-1419: Random decision forest is excessively slow on numeric features (srowen)
@@ -149,7 +153,7 @@ Release 0.8 - 2013-07-25
   MAHOUT-1272: Parallel SGD matrix factorizer for SVDrecommender (Peng Cheng via ssc)
 
   MAHOUT-1271: classify-20newsgroups.sh fails during the seqdirectory step (smarthi)
-  
+
   MAHOUT-1269: Cleanup deprecated Lucene 3.x API calls in lucene2seq utility unit tests (smarthi)
 
   MAHOUT-833: Make conversion to sequence files map-reduce (Josh Patterson, smarthi)
@@ -164,7 +168,7 @@ Release 0.8 - 2013-07-25
 
   MAHOUT-1254: Final round of cleanup for StreamingKMeans (dfilimon)
 
-  MAHOUT-1263: Serialise/Deserialise Lambda value for OnlineLogisticRegression (Mike Davy via smarthi)  
+  MAHOUT-1263: Serialise/Deserialise Lambda value for OnlineLogisticRegression (Mike Davy via smarthi)
 
   MAHOUT-1258: Another shot at findbugs and checkstyle (ssc)
 
@@ -201,15 +205,15 @@ Release 0.8 - 2013-07-25
   MAHOUT-1228: Cleanup .gitignore (Stevo Slavic via ssc)
 
   MAHOUT-1047: CVB hangs after completion (Angel Martinez Gonzalez via smarthi)
-  
+
   MAHOUT-1235: ParallelALSFactorizationJob does not use VectorSumCombiner (ssc)
 
   MAHOUT-1230: SparceMatrix.clone() is not deep copy (Maysam Yabandeh via tdunning)
-  
+
   MAHOUT-1232: VectorHelper.topEntries() throws a NPE when number of NonZero elements in vector < maxEntries (smarthi)
 
   MAHOUT-1229: Conf directory content from Mahout distribution archives cannot be unpacked (Stevo Slavic via smarthi)
-  
+
   MAHOUT-1213: SSVD job doesn't clean it's temp dir, and fails when seeing it again (smarthi)
 
   MAHOUT-1223: Fixed point skipped in StreamingKMeans when iterating through centroids from a reducer (dfilimon)
@@ -229,12 +233,12 @@ Release 0.8 - 2013-07-25
   MAHOUT-1181: Adding StreamingKMeans MapReduce classes (dfilimon)
 
   MAHOUT-1212: Incorrect classify-20newsgroups.sh file description (Julian Ortega via smarthi)
-   
-  MAHOUT-1209: DRY out maven-compiler-plugin configuration (Stevo Slavic via smarthi) 
 
-  MAHOUT-1207: Fix typos in description in parent pom (Stevo Slavic via smarthi)  
+  MAHOUT-1209: DRY out maven-compiler-plugin configuration (Stevo Slavic via smarthi)
 
-  MAHOUT-1199: Improve javadoc comments of mahout-integration (Angel Martinez Gonzalez via smarthi)  
+  MAHOUT-1207: Fix typos in description in parent pom (Stevo Slavic via smarthi)
+
+  MAHOUT-1199: Improve javadoc comments of mahout-integration (Angel Martinez Gonzalez via smarthi)
 
   MAHOUT-1162: Adding BallKMeans and StreamingKMeans clustering algorithms (dfilimon)
 
@@ -268,7 +272,7 @@ Release 0.8 - 2013-07-25
 
   MAHOUT-1176: Introduce a changelog file to raise contributors attribution (ssc)
 
-  MAHOUT-1108: Allows cluster-reuters.sh example to be executed on a cluster (elmer.garduno via gsingers) 
+  MAHOUT-1108: Allows cluster-reuters.sh example to be executed on a cluster (elmer.garduno via gsingers)
 
   MAHOUT-961: Fix issue in decision forest tree visualizer to properly show stems of tree (Ikumasa Mukai via gsingers)
 

@@ -319,7 +319,7 @@ public abstract class AbstractCluster implements Cluster {
     }
 
     boolean hasBindings = bindings != null;
-    boolean isSparse = !v.isDense() && v.getNumNondefaultElements() != v.size();
+    boolean isSparse = v.getNumNonZeroElements() != v.size();
 
     // we assume sequential access in the output
     Vector provider = v.isSequentialAccess() ? v : new SequentialAccessSparseVector(v);

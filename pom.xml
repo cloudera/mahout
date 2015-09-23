@@ -927,7 +927,7 @@
     <module>integration</module>
     <module>examples</module>
     <module>distribution</module>
-    <module>math-scala</module>
+    <!-- <module>math-scala</module> --> <!-- CDH-31732 Activated by math-scala profile now -->
   </modules>
   <profiles>
     <profile>
@@ -1157,6 +1157,17 @@
           </plugin>
         </plugins>
       </build>
+    </profile>
+    <!-- CDH-31732: don't build math-scala for Java 8 as it uses Scala 2.9 and
+      will not build / is not supported. Still builds and is released with Java 7. -->
+    <profile>
+      <id>math-scala</id>
+      <activation>
+        <jdk>(,1.8)</jdk>
+      </activation>
+      <modules>
+        <module>math-scala</module>
+      </modules>
     </profile>
   </profiles>
   <scm>

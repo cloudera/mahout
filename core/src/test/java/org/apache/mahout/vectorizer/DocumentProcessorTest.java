@@ -19,7 +19,6 @@ package org.apache.mahout.vectorizer;
 
 import java.util.Arrays;
 
-import com.carrotsearch.randomizedtesting.annotations.ThreadLeakScope;
 import com.google.common.io.Closeables;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileStatus;
@@ -39,7 +38,6 @@ import org.junit.Test;
  * by the {@link DocumentProcessor} into {@link SequenceFile}s of document ID and tokens (as
  * {@link StringTuple}).
  */
-@ThreadLeakScope(ThreadLeakScope.Scope.NONE)
 public class DocumentProcessorTest extends MahoutTestCase {
 
   @Test

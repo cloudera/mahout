@@ -23,13 +23,13 @@
   <parent>
     <groupId>org.apache.mahout</groupId>
     <artifactId>mahout</artifactId>
-    <version>0.9-cdh5.5.4-SNAPSHOT</version>
+    <version>0.9-cdh5.5.4</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
   <groupId>org.apache.mahout</groupId>
   <artifactId>mahout-buildtools</artifactId>
-  <version>0.9-cdh5.5.4-SNAPSHOT</version>
+  <version>0.9-cdh5.5.4</version>
   <name>Mahout Build Tools</name>
 
   <packaging>jar</packaging>

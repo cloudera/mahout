@@ -190,6 +190,10 @@ public class ReadOnlyFileSystemDirectory extends BaseDirectory {
       public String toString() {
         return "Lock@" + new Path(directory, name);
       }
+
+      public void close() {
+        // do nothing
+      }
     };
   }
 

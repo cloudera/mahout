@@ -20,12 +20,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.apache.mahout</groupId>
   <artifactId>mahout</artifactId>
-  <version>0.9-cdh5.5.5-SNAPSHOT</version>
+  <version>0.9-cdh5.5.5</version>
 
   <parent>
     <groupId>com.cloudera.cdh</groupId>
     <artifactId>cdh-root</artifactId>
-    <version>5.5.5-SNAPSHOT</version>
+    <version>5.5.5</version>
   </parent>
 
   <packaging>pom</packaging>

@@ -17,6 +17,7 @@
 
 package org.apache.mahout.common.distance;
 
+import org.apache.mahout.math.IndexException;
 import org.apache.mahout.math.Vector;
 
 /**
@@ -31,9 +32,21 @@ public class EuclideanDistanceMeasure extends SquaredEuclideanDistanceMeasure {
   
   @Override
   public double distance(Vector v1, Vector v2) {
-    return Math.sqrt(super.distance(v1, v2));
+    double largeDistanceValue = 1000000;
+    int [] fieldNumbersThatMustMatch = {3}; // Field 3 is dwellingType
+
+    try {
+      for (int fieldNumber : fieldNumbersThatMustMatch) {
+        if (v1.get(fieldNumber) != v2.get(fieldNumber)) {
+          return largeDistanceValue;
+        }
+      }
+      return Math.sqrt(super.distance(v1, v2));
+    } catch (IndexException e) {
+      return Math.sqrt(super.distance(v1, v2));
+    }
   }
-  
+
   @Override
   public double distance(double centroidLengthSquare, Vector centroid, Vector v) {
     return Math.sqrt(super.distance(centroidLengthSquare, centroid, v));

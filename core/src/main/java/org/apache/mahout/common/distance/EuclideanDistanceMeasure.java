@@ -18,6 +18,9 @@
 package org.apache.mahout.common.distance;
 
 import org.apache.mahout.math.Vector;
+import org.apache.mahout.math.IndexException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class implements a Euclidean distance metric by summing the square root of the squared differences
@@ -28,10 +31,24 @@ import org.apache.mahout.math.Vector;
  * squared differences.
  */
 public class EuclideanDistanceMeasure extends SquaredEuclideanDistanceMeasure {
-  
+  Logger log = LoggerFactory.getLogger(EuclideanDistanceMeasure.class);
   @Override
   public double distance(Vector v1, Vector v2) {
-    return Math.sqrt(super.distance(v1, v2));
+    double largeDistanceValue = 1000000;
+    int [] fieldNumbersThatMustMatch = {6}; // Field 3 is dwellingType
+
+    try {
+      log.debug("calculating distance for: %s -- %s", v1, v2);
+      for (int fieldNumber : fieldNumbersThatMustMatch) {
+        if (v1.get(fieldNumber) != v2.get(fieldNumber)) {
+          return largeDistanceValue+Math.sqrt(super.distance(v1, v2));
+        }
+      }
+      return Math.sqrt(super.distance(v1, v2));
+    } catch (IndexException e) {
+      return Math.sqrt(super.distance(v1, v2));
+    }
+
   }
   
   @Override

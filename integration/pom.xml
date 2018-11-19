@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.apache.mahout</groupId>
     <artifactId>mahout</artifactId>
-    <version>0.9-cdh5.16.0</version>
+    <version>0.9-cdh5.16.1</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
